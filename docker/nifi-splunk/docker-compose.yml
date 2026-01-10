@@ -1,0 +1,49 @@
+services:
+  nifi:
+    image: apache/nifi:latest
+    container_name: my-nifi
+    ports:
+      - "8443:8443"
+      - "8123:8123/udp"
+      - "8456:8456/udp"
+      - "8789:8789/udp"
+    environment:
+      - NIFI_WEB_HTTPS_PORT=8443
+      - SINGLE_USER_CREDENTIALS_USERNAME=admin
+      - SINGLE_USER_CREDENTIALS_PASSWORD=password12345678
+    volumes:
+      - nifi_conf:/opt/nifi/nifi-current/conf
+      - nifi_database:/opt/nifi/nifi-current/database_repository
+      - nifi_flowfile:/opt/nifi/nifi-current/flowfile_repository
+      - nifi_content:/opt/nifi/nifi-current/content_repository
+      - nifi_provenance:/opt/nifi/nifi-current/provenance_repository
+    networks:
+      - nifi-net
+    restart: unless-stopped
+
+  splunk:
+    image: splunk/splunk:latest
+    container_name: splunk
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD=password12345678
+    ports:
+      - "8000:8000"      # ממשק הוובי של ספלאנק
+      - "8088:8088"      # HEC - הפורט אליו NiFi ישלח מידע
+    volumes:
+      - splunk_etc:/opt/splunk/etc
+      - splunk_var:/opt/splunk/var
+    networks:
+      - nifi-net
+
+networks:
+  nifi-net:
+
+volumes:
+  nifi_conf:
+  nifi_database:
+  nifi_flowfile:
+  nifi_content:
+  nifi_provenance:
+  splunk_etc:       
+  splunk_var:       
