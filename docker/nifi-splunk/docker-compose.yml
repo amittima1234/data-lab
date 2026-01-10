@@ -28,8 +28,8 @@ services:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=password12345678
     ports:
-      - "8000:8000"      # ממשק הוובי של ספלאנק
-      - "8088:8088"      # HEC - הפורט אליו NiFi ישלח מידע
+      - "8000:8000"      
+      - "8088:8088"     
     volumes:
       - splunk_etc:/opt/splunk/etc
       - splunk_var:/opt/splunk/var
