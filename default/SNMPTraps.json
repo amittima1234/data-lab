@@ -1,0 +1,11 @@
+{
+  "flow" : {
+    "createdTimestamp" : 1768033021749,
+    "description" : "SNMP Traps with v3 noatuhnopriv and authpriv",
+    "identifier" : "SNMPTraps",
+    "lastModifiedTimestamp" : 1768033021749,
+    "name" : "SNMPTraps",
+    "versionCount" : 0
+  },
+  "latest" : false
+}
