@@ -1,0 +1,56 @@
+
+services:
+  # --- NiFi (Standalone) ---
+  nifi:
+    image: apache/nifi:latest
+    container_name: nifi
+    restart: unless-stopped
+    ports:
+      - "${NIFI_HTTPS_GUI_PORT}:8443"
+      - "${NIFI_MIN_GENERAL_LISTEN_PORT}-${NIFI_MAX_GENERAL_LISTEN_PORT}:${NIFI_MIN_GENERAL_LISTEN_PORT}-${NIFI_MAX_GENERAL_LISTEN_PORT}"
+      - "${NIFI_MIN_GENERAL_LISTEN_PORT}-${NIFI_MAX_GENERAL_LISTEN_PORT}:${NIFI_MIN_GENERAL_LISTEN_PORT}-${NIFI_MAX_GENERAL_LISTEN_PORT}/udp"
+      - "${NIFI_HTTP_LOG_LISTEN_PORT}:${NIFI_HTTP_LOG_LISTEN_PORT}"
+    environment:
+      - NIFI_WEB_HTTPS_HOST=0.0.0.0
+      - NIFI_WEB_HTTPS_PORT=8443
+      - NIFI_CLUSTER_IS_NODE=false
+      - SINGLE_USER_CREDENTIALS_USERNAME=${NIFI_ADMIN_USERNAME}
+      - SINGLE_USER_CREDENTIALS_PASSWORD=${NIFI_ADMIN_PASSWORD}
+      - NIFI_JVM_HEAP_INIT=512m
+      - NIFI_JVM_HEAP_MAX=1g
+    volumes:
+      - nifi_conf:/opt/nifi/nifi-current/conf
+      - nifi_database:/opt/nifi/nifi-current/database_repository
+      - nifi_flowfile:/opt/nifi/nifi-current/flowfile_repository
+      - nifi_content:/opt/nifi/nifi-current/content_repository
+      - nifi_provenance:/opt/nifi/nifi-current/provenance_repository
+    networks:
+      - data-lab-net
+
+  # --- Splunk ---
+  splunk:
+    image: splunk/splunk:latest
+    container_name: splunk
+    restart: unless-stopped
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_GENERAL_TERMS=--accept-sgt-current-at-splunk-com 
+      - SPLUNK_PASSWORD=${SPLUNK_PASSWORD}
+    ports:
+      - "${SPLUNK_HTTP_PORT}:8000" 
+      - "${SPLUNK_INGEST_PORT}:8088"
+    networks:
+      - data-lab-net
+
+volumes:
+  nifi_conf:
+  nifi_database:
+  nifi_flowfile:
+  nifi_content:
+  nifi_provenance:
+  splunk_etc:
+  splunk_var:
+
+networks:
+  data-lab-net:
+    driver: bridge

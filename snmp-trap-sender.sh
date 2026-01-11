@@ -1,0 +1,2 @@
+snmptrap -v 3 -l authPriv -u secure_user -a SHA-256 -A MyAuthPass123 -x AES-256 -X MyPrivPass123  127.0.0.1:8789 '' 1.3.6.1.4.1.8072.2.3.0.1 1.3.6.1.2.1.1.1.0 s "Success with HMAC192SHA256"
+snmptrap -v 3 -l noAuthNoPriv -u nifi_user 127.0.0.1:8456 '' 1.3.6.1.4.1.8072.2.3.0.1 1.3.6.1.2.1.1.1.0 s "Testing Port 8456"
