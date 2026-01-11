@@ -79,13 +79,13 @@
       "destination" : {
         "comments" : "",
         "groupId" : "flow-contents-group",
-        "id" : "ebca9fec-2250-3d86-bfac-19b0e471124d",
-        "name" : "PutElasticsearchJson",
+        "id" : "db2249ad-f8cd-32ea-9fa0-c9bc8dde6dc9",
+        "name" : "PutSplunkHTTP",
         "type" : "PROCESSOR"
       },
       "flowFileExpiration" : "0 sec",
       "groupIdentifier" : "flow-contents-group",
-      "identifier" : "4a256337-c1b8-3381-b645-5e76b93e6d5e",
+      "identifier" : "588de20a-1561-3a4a-9fd8-ce70c12b89f5",
       "labelIndex" : 0,
       "loadBalanceCompression" : "DO_NOT_COMPRESS",
       "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
@@ -100,7 +100,7 @@
         "name" : "AttributesToJSON",
         "type" : "PROCESSOR"
       },
-      "zIndex" : 5
+      "zIndex" : 11
     }, {
       "backPressureDataSizeThreshold" : "1 GB",
       "backPressureObjectThreshold" : 10000,
@@ -488,6 +488,152 @@
       "type" : "org.apache.nifi.processors.attributes.UpdateAttribute",
       "yieldDuration" : "1 sec"
     }, {
+      "autoTerminatedRelationships" : [ ],
+      "backoffMechanism" : "PENALIZE_FLOWFILE",
+      "bulletinLevel" : "WARN",
+      "bundle" : {
+        "artifact" : "nifi-splunk-nar",
+        "group" : "org.apache.nifi",
+        "version" : "2.7.2"
+      },
+      "comments" : "",
+      "componentType" : "PROCESSOR",
+      "concurrentlySchedulableTaskCount" : 1,
+      "executionNode" : "ALL",
+      "groupIdentifier" : "flow-contents-group",
+      "identifier" : "db2249ad-f8cd-32ea-9fa0-c9bc8dde6dc9",
+      "maxBackoffPeriod" : "10 mins",
+      "name" : "PutSplunkHTTP",
+      "penaltyDuration" : "30 sec",
+      "position" : {
+        "x" : 736.0,
+        "y" : 328.0
+      },
+      "properties" : {
+        "Scheme" : "http",
+        "HTTP Event Collector Token" : "5249724b-a4e7-4405-aede-19fe7bb12d22",
+        "Hostname" : "localhost",
+        "Security Protocol" : "TLSv1_2",
+        "HTTP Event Collector Port" : "8088",
+        "Character Set" : "UTF-8"
+      },
+      "propertyDescriptors" : {
+        "Owner" : {
+          "displayName" : "Owner",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Owner",
+          "sensitive" : false
+        },
+        "Scheme" : {
+          "displayName" : "Scheme",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Scheme",
+          "sensitive" : false
+        },
+        "HTTP Event Collector Token" : {
+          "displayName" : "HTTP Event Collector Token",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "HTTP Event Collector Token",
+          "sensitive" : false
+        },
+        "Source Type" : {
+          "displayName" : "Source Type",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Source Type",
+          "sensitive" : false
+        },
+        "Hostname" : {
+          "displayName" : "Hostname",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Hostname",
+          "sensitive" : false
+        },
+        "Host" : {
+          "displayName" : "Host",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Host",
+          "sensitive" : false
+        },
+        "Index" : {
+          "displayName" : "Index",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Index",
+          "sensitive" : false
+        },
+        "Security Protocol" : {
+          "displayName" : "Security Protocol",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Security Protocol",
+          "sensitive" : false
+        },
+        "Source" : {
+          "displayName" : "Source",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Source",
+          "sensitive" : false
+        },
+        "HTTP Event Collector Port" : {
+          "displayName" : "HTTP Event Collector Port",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "HTTP Event Collector Port",
+          "sensitive" : false
+        },
+        "Username" : {
+          "displayName" : "Username",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Username",
+          "sensitive" : false
+        },
+        "Content Type" : {
+          "displayName" : "Content Type",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Content Type",
+          "sensitive" : false
+        },
+        "Character Set" : {
+          "displayName" : "Character Set",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Character Set",
+          "sensitive" : false
+        },
+        "Password" : {
+          "displayName" : "Password",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Password",
+          "sensitive" : true
+        },
+        "Splunk Request Channel" : {
+          "displayName" : "Splunk Request Channel",
+          "dynamic" : false,
+          "identifiesControllerService" : false,
+          "name" : "Splunk Request Channel",
+          "sensitive" : false
+        }
+      },
+      "retriedRelationships" : [ ],
+      "retryCount" : 10,
+      "runDurationMillis" : 0,
+      "scheduledState" : "ENABLED",
+      "schedulingPeriod" : "0 sec",
+      "schedulingStrategy" : "TIMER_DRIVEN",
+      "style" : { },
+      "type" : "org.apache.nifi.processors.splunk.PutSplunkHTTP",
+      "yieldDuration" : "1 sec"
+    }, {
       "autoTerminatedRelationships" : [ "failure" ],
       "backoffMechanism" : "PENALIZE_FLOWFILE",
       "bulletinLevel" : "WARN",
@@ -506,8 +652,8 @@
       "name" : "AttributesToJSON",
       "penaltyDuration" : "30 sec",
       "position" : {
-        "x" : 24.0,
-        "y" : 320.0
+        "x" : 40.0,
+        "y" : 328.0
       },
       "properties" : {
         "Destination" : "flowfile-content",
@@ -681,142 +827,6 @@
       "style" : { },
       "type" : "org.apache.nifi.snmp.processors.ListenTrapSNMP",
       "yieldDuration" : "1 sec"
-    }, {
-      "autoTerminatedRelationships" : [ "errors", "failure", "original", "retry", "successful" ],
-      "backoffMechanism" : "PENALIZE_FLOWFILE",
-      "bulletinLevel" : "WARN",
-      "bundle" : {
-        "artifact" : "nifi-elasticsearch-restapi-nar",
-        "group" : "org.apache.nifi",
-        "version" : "2.7.2"
-      },
-      "comments" : "",
-      "componentType" : "PROCESSOR",
-      "concurrentlySchedulableTaskCount" : 1,
-      "executionNode" : "ALL",
-      "groupIdentifier" : "flow-contents-group",
-      "identifier" : "ebca9fec-2250-3d86-bfac-19b0e471124d",
-      "maxBackoffPeriod" : "10 mins",
-      "name" : "PutElasticsearchJson",
-      "penaltyDuration" : "30 sec",
-      "position" : {
-        "x" : 1008.0,
-        "y" : 320.0
-      },
-      "properties" : {
-        "Treat Not Found as Success" : "true",
-        "Max JSON Field String Length" : "20 MB",
-        "Index Operation" : "index",
-        "Index" : "snmp-traps",
-        "Log Error Responses" : "false",
-        "Output Error Responses" : "false",
-        "Batch Size" : "100",
-        "Scripted Upsert" : "false",
-        "Client Service" : "f818df6a-39f6-3037-b07c-758e923d2b99",
-        "Character Set" : "UTF-8"
-      },
-      "propertyDescriptors" : {
-        "Dynamic Templates" : {
-          "displayName" : "Dynamic Templates",
-          "dynamic" : false,
-          "identifiesControllerService" : false,
-          "name" : "Dynamic Templates",
-          "sensitive" : false
-        },
-        "Treat Not Found as Success" : {
-          "displayName" : "Treat Not Found as Success",
-          "dynamic" : false,
-          "identifiesControllerService" : false,
-          "name" : "Treat Not Found as Success",
-          "sensitive" : false
-        },
-        "Script" : {
-          "displayName" : "Script",
-          "dynamic" : false,
-          "identifiesControllerService" : false,
-          "name" : "Script",
-          "sensitive" : false
-        },
-        "Max JSON Field String Length" : {
-          "displayName" : "Max JSON Field String Length",
-          "dynamic" : false,
-          "identifiesControllerService" : false,
-          "name" : "Max JSON Field String Length",
-          "sensitive" : false
-        },
-        "Index Operation" : {
-          "displayName" : "Index Operation",
-          "dynamic" : false,
-          "identifiesControllerService" : false,
-          "name" : "Index Operation",
-          "sensitive" : false
-        },
-        "Index" : {
-          "displayName" : "Index",
-          "dynamic" : false,
-          "identifiesControllerService" : false,
-          "name" : "Index",
-          "sensitive" : false
-        },
-        "Log Error Responses" : {
-          "displayName" : "Log Error Responses",
-          "dynamic" : false,
-          "identifiesControllerService" : false,
-          "name" : "Log Error Responses",
-          "sensitive" : false
-        },
-        "Output Error Responses" : {
-          "displayName" : "Output Error Responses",
-          "dynamic" : false,
-          "identifiesControllerService" : false,
-          "name" : "Output Error Responses",
-          "sensitive" : false
-        },
-        "Identifier Attribute" : {
-          "displayName" : "Identifier Attribute",
-          "dynamic" : false,
-          "identifiesControllerService" : false,
-          "name" : "Identifier Attribute",
-          "sensitive" : false
-        },
-        "Type" : {
-          "displayName" : "Type",
-          "dynamic" : false,
-          "identifiesControllerService" : false,
-          "name" : "Type",
-          "sensitive" : false
-        },
-        "Batch Size" : {
-          "displayName" : "Batch Size",
-          "dynamic" : false,
-          "identifiesControllerService" : false,
-          "name" : "Batch Size",
-          "sensitive" : false
-        },
-        "Scripted Upsert" : {
-          "displayName" : "Scripted Upsert",
-          "dynamic" : false,
-          "identifiesControllerService" : false,
-          "name" : "Scripted Upsert",
-          "sensitive" : false
-        },
-        "Character Set" : {
-          "displayName" : "Character Set",
-          "dynamic" : false,
-          "identifiesControllerService" : false,
-          "name" : "Character Set",
-          "sensitive" : false
-        }
-      },
-      "retriedRelationships" : [ "errors", "failure", "original", "retry", "successful" ],
-      "retryCount" : 10,
-      "runDurationMillis" : 0,
-      "scheduledState" : "ENABLED",
-      "schedulingPeriod" : "0 sec",
-      "schedulingStrategy" : "TIMER_DRIVEN",
-      "style" : { },
-      "type" : "org.apache.nifi.processors.elasticsearch.PutElasticsearchJson",
-      "yieldDuration" : "1 sec"
     } ],
     "remoteProcessGroups" : [ ],
     "scheduledState" : "ENABLED",
@@ -829,6 +839,6 @@
   "snapshotMetadata" : {
     "author" : "admin",
     "flowIdentifier" : "SNMPTrap",
-    "timestamp" : 1768117009224
+    "timestamp" : 1768117394878
   }
 }
