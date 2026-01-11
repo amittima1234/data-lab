@@ -1,6 +1,5 @@
 
 services:
-  # --- NiFi (Standalone) ---
   nifi:
     image: apache/nifi:latest
     container_name: nifi
@@ -27,7 +26,6 @@ services:
     networks:
       - data-lab-net
 
-  # --- Splunk ---
   splunk:
     image: splunk/splunk:latest
     container_name: splunk
@@ -35,10 +33,10 @@ services:
     environment:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_GENERAL_TERMS=--accept-sgt-current-at-splunk-com 
-      - SPLUNK_PASSWORD=${SPLUNK_PASSWORD}
+      - SPLUNK_PASSWORD=${SPLUNK_ADMIN_PASSWORD}
     ports:
-      - "${SPLUNK_HTTP_PORT}:8000" 
-      - "${SPLUNK_INGEST_PORT}:8088"
+      - "${SPLUNK_HTTP_UI_PORT}:8000" 
+      - "${SPLUNK_HTTP_INGEST_PORT}:8088"
     networks:
       - data-lab-net
 
