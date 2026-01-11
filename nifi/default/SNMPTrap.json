@@ -1,0 +1,11 @@
+{
+  "flow" : {
+    "createdTimestamp" : 1768117008396,
+    "description" : "",
+    "identifier" : "SNMPTrap",
+    "lastModifiedTimestamp" : 1768117008396,
+    "name" : "SNMPTrap",
+    "versionCount" : 0
+  },
+  "latest" : false
+}
